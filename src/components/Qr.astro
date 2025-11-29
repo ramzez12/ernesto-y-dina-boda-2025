@@ -1,0 +1,314 @@
+---
+// RegaloQR.astro
+---
+<section class="py-8 md:py-12 lg:py-16 px-4 relative overflow-hidden">
+  <!-- Fondo sutil con textura -->
+  <div class="absolute inset-0 bg-gradient-to-b from-[#f5f9f0]/40 via-[#faf8f5]/20 to-[#f5f9f0]/40 z-0"></div>
+
+  <div class="max-w-4xl mx-auto relative z-10">
+
+    <!-- CONTENEDOR PRINCIPAL CON HOJAS -->
+    <div class="relative">
+
+      <!-- 🍃 HOJA LATERAL IZQUIERDA -->
+      <div class="absolute -left-8 md:-left-16 top-1/2 -translate-y-1/2 w-20 md:w-28 pointer-events-none z-0" id="hoja-qr-izq">
+        <img src="/imagenes/Hojas.webp" alt="Hoja decorativa" class="w-full h-auto object-contain transform -scale-x-100 opacity-60" />
+      </div>
+
+      <!-- 🍃 HOJA LATERAL DERECHA -->
+      <div class="absolute -right-8 md:-right-16 top-1/2 -translate-y-1/2 w-20 md:w-28 pointer-events-none z-0" id="hoja-qr-der">
+        <img src="/imagenes/Hojas.webp" alt="Hoja decorativa" class="w-full h-auto object-contain opacity-60" />
+      </div>
+
+      <!-- 🌸 SEPARADOR SUPERIOR -->
+      <div class="flex justify-center mb-6" id="separador-qr-top">
+        <img
+          src="/imagenes/Separadores.webp"
+          alt="Separador decorativo"
+          class="w-32 md:w-40 lg:w-48 h-auto object-contain opacity-90"
+        />
+      </div>
+
+      <!-- TÍTULO -->
+      <div class="text-center mb-8" id="titulo-qr">
+        <h2 class="font-charm text-2xl md:text-3xl lg:text-4xl text-[#C9A961] font-bold mb-4">
+          MESA DE REGALOS
+        </h2>
+        <!-- Línea decorativa -->
+        <div class="flex items-center justify-center gap-3">
+          <div class="w-16 h-[2px] bg-gradient-to-r from-transparent to-[#C9A961]"></div>
+          <div class="w-2 h-2 rounded-full bg-[#C9A961]"></div>
+          <div class="w-16 h-[2px] bg-gradient-to-l from-transparent to-[#C9A961]"></div>
+        </div>
+      </div>
+
+      <!-- MENSAJE PRINCIPAL -->
+      <div class="max-w-2xl mx-auto mb-8" id="mensaje-qr">
+        <p class="font-charm text-xl md:text-2xl lg:text-2xl text-[#626a54] text-center leading-relaxed">
+          Su presencia en nuestra boda será el mejor regalo. Pero si desean darnos otro obsequio y si está en sus posibilidades, para su comodidad les agradeceremos su depósito en nuestra cuenta bancaria.
+        </p>
+      </div>
+
+      <!-- CARD CON QR Y DATOS BANCARIOS -->
+      <div class="bg-white/95 backdrop-blur-sm rounded-3xl border-2 border-[#C9A961]/30 py-8 md:py-10 px-6 md:px-10 lg:px-12 shadow-lg max-w-3xl mx-auto" id="card-qr">
+        
+        <!-- CONTENEDOR GRID: QR + DATOS -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          
+          <!-- COLUMNA IZQUIERDA: CÓDIGO QR -->
+          <div class="flex flex-col items-center justify-center" id="qr-container">
+            <!-- QR MÁS GRANDE - Aumentado el tamaño especialmente para móvil -->
+            <div class="w-72 h-72 md:w-80 md:h-80 bg-white rounded-2xl border-2 border-[#C9A961]/20 flex items-center justify-center shadow-lg mb-4">
+              <!-- Aquí va tu imagen QR -->
+              <img src="/imagenes/QR.png" alt="Código QR" class="w-full h-full object-contain p-4" />
+            </div>
+            <p class="font-charm text-lg md:text-xl text-[#C9A961] font-bold">
+              Escanea el código
+            </p>
+          </div>
+
+        
+        </div>
+
+        <!-- DECORACIÓN INFERIOR -->
+        <div class="flex justify-center mt-8" id="decoracion-qr">
+          <div class="flex gap-2">
+            <div class="w-2 h-2 rounded-full bg-[#C9A961] opacity-60"></div>
+            <div class="w-2 h-2 rounded-full bg-[#C9A961] opacity-80"></div>
+            <div class="w-2 h-2 rounded-full bg-[#C9A961]"></div>
+            <div class="w-2 h-2 rounded-full bg-[#C9A961] opacity-80"></div>
+            <div class="w-2 h-2 rounded-full bg-[#C9A961] opacity-60"></div>
+          </div>
+        </div>
+
+      </div>
+
+     
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (typeof window !== 'undefined') {
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("💳 Iniciando animación de Mesa de Regalos/QR...");
+
+      // 🎯 ESTADO INICIAL
+      gsap.set("#hoja-qr-izq", { opacity: 0, x: -50 });
+      gsap.set("#hoja-qr-der", { opacity: 0, x: 50 });
+      gsap.set("#separador-qr-top", { opacity: 0, y: -30, scale: 0.8 });
+      gsap.set("#titulo-qr", { opacity: 0, y: -20 });
+      gsap.set("#mensaje-qr", { opacity: 0, y: 20 });
+      gsap.set("#card-qr", { opacity: 0, scale: 0.9 });
+      gsap.set("#qr-container", { opacity: 0, x: -50 });
+      gsap.set("#datos-bancarios", { opacity: 0, x: 50 });
+      gsap.set("#decoracion-qr", { opacity: 0, scaleX: 0 });
+      gsap.set("#separador-qr-bottom", { opacity: 0, y: 30, scale: 0.8 });
+
+      // ✨ ANIMACIÓN CON SCROLLTRIGGER
+      ScrollTrigger.create({
+        trigger: "#separador-qr-top",
+        start: "top 85%",
+        end: "top 20%",
+        onEnter: () => {
+          const tl = gsap.timeline();
+
+          // Separador superior
+          tl.to("#separador-qr-top", {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            ease: "back.out(1.4)",
+          })
+          // Título
+          .to("#titulo-qr", {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+          }, "-=0.5")
+          // Mensaje principal
+          .to("#mensaje-qr", {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+          }, "-=0.4")
+          // Card principal
+          .to("#card-qr", {
+            opacity: 1,
+            scale: 1,
+            duration: 1,
+            ease: "back.out(1.2)",
+          }, "-=0.4")
+          // QR desde la izquierda
+          .to("#qr-container", {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          }, "-=0.6")
+          // Datos bancarios desde la derecha
+          .to("#datos-bancarios", {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          }, "-=0.8")
+          // Hojas laterales
+          .to("#hoja-qr-izq, #hoja-qr-der", {
+            opacity: 0.6,
+            x: 0,
+            duration: 1,
+            ease: "power3.out",
+          }, "-=0.8")
+          // Decoración de puntos
+          .to("#decoracion-qr", {
+            opacity: 1,
+            scaleX: 1,
+            duration: 0.6,
+            ease: "power2.out",
+          }, "-=0.4")
+          // Separador inferior
+          .to("#separador-qr-bottom", {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            ease: "back.out(1.4)",
+          }, "-=0.5");
+
+          // 💫 ANIMACIONES CONTINUAS
+
+          // Movimiento suave del QR
+          gsap.to("#qr-container > div:first-child", {
+            y: -5,
+            duration: 2.5,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            delay: 1,
+          });
+
+          // Hojas laterales
+          gsap.to("#hoja-qr-izq", {
+            y: -8,
+            rotation: -3,
+            duration: 3,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            delay: 1,
+          });
+
+          gsap.to("#hoja-qr-der", {
+            y: -8,
+            rotation: 3,
+            duration: 3,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            delay: 1.3,
+          });
+
+          // Pulso en puntos decorativos
+          gsap.to("#decoracion-qr > div > div", {
+            scale: 1.3,
+            opacity: 0.4,
+            duration: 2,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            stagger: 0.15,
+            delay: 1.5,
+          });
+        },
+        onLeaveBack: () => {
+          gsap.set("#hoja-qr-izq", { opacity: 0, x: -50 });
+          gsap.set("#hoja-qr-der", { opacity: 0, x: 50 });
+          gsap.set("#separador-qr-top", { opacity: 0, y: -30, scale: 0.8 });
+          gsap.set("#titulo-qr", { opacity: 0, y: -20 });
+          gsap.set("#mensaje-qr", { opacity: 0, y: 20 });
+          gsap.set("#card-qr", { opacity: 0, scale: 0.9 });
+          gsap.set("#qr-container", { opacity: 0, x: -50 });
+          gsap.set("#datos-bancarios", { opacity: 0, x: 50 });
+          gsap.set("#decoracion-qr", { opacity: 0, scaleX: 0 });
+          gsap.set("#separador-qr-bottom", { opacity: 0, y: 30, scale: 0.8 });
+        },
+      });
+
+      console.log("💳✨ ¡Componente Mesa de Regalos/QR activado!");
+    });
+  }
+</script>
+
+<style>
+  /* Transición suave para el card */
+  #card-qr {
+    transition: all 0.3s ease;
+  }
+
+  #card-qr:hover {
+    box-shadow: 0 25px 60px rgba(201, 169, 97, 0.25);
+    transform: translateY(-5px);
+  }
+
+  /* Efecto hover en el QR */
+  #qr-container > div:first-child {
+    transition: all 0.4s ease;
+  }
+
+  #qr-container:hover > div:first-child {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(201, 169, 97, 0.3);
+  }
+
+  /* Datos bancarios con transición */
+  #datos-bancarios > div {
+    transition: all 0.3s ease;
+  }
+
+  #datos-bancarios > div:hover {
+    transform: translateX(5px);
+  }
+
+  #datos-bancarios > div:hover p:last-child {
+    color: #a88a4d;
+  }
+
+  /* Hojas con transición */
+  #hoja-qr-izq,
+  #hoja-qr-der {
+    will-change: transform;
+  }
+
+  /* Separadores con hover */
+  #separador-qr-top img,
+  #separador-qr-bottom img {
+    transition: all 0.3s ease;
+  }
+
+  #separador-qr-top:hover img,
+  #separador-qr-bottom:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
+
+  /* Puntos decorativos */
+  #decoracion-qr > div > div {
+    transition: all 0.3s ease;
+  }
+
+  /* Mensaje principal con hover sutil */
+  #mensaje-qr p {
+    transition: color 0.3s ease;
+  }
+</style>

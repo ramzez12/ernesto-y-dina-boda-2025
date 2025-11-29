@@ -1,0 +1,373 @@
+---
+// Reservas.astro
+// Props: puedes pasar el número de lugares reservados
+interface Props {
+  lugares?: number; // Número de lugares reservados (1, 2, 3, 4, etc.)
+}
+
+const { lugares = 1 } = Astro.props;
+
+// Determinar si es singular o plural
+const esSingular = lugares === 1;
+const textoLugares = esSingular ? "LUGAR" : "LUGARES";
+---
+
+<section class="py-8 md:py-4 lg:py-16 px-4 relative overflow-hidden">
+  <!-- Fondo elegante con gradiente -->
+  <div class="absolute inset-0 bg-gradient-to-b from-[#fffaf5]/50 via-[#fff9f0]/30 to-[#fffaf5]/50 z-0"></div>
+
+  <div class="max-w-4xl mx-auto relative z-10">
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="relative">
+
+      <!-- 🍃 HOJAS DECORATIVAS SUPERIORES IZQUIERDA -->
+      <div class="absolute -left-6 md:-left-12 lg:-left-16 -top-8 md:-top-12 w-24 md:w-32 lg:w-40 pointer-events-none z-0" id="hoja-reserva-top-izq">
+        <img src="/imagenes/Hojas.webp" alt="Hojas decorativas" class="w-full h-auto object-contain transform -scale-x-100 opacity-50" />
+      </div>
+
+      <!-- 🍃 HOJAS DECORATIVAS SUPERIORES DERECHA -->
+      <div class="absolute -right-6 md:-right-12 lg:-right-16 -top-8 md:-top-12 w-24 md:w-32 lg:w-40 pointer-events-none z-0" id="hoja-reserva-top-der">
+        <img src="/imagenes/Hojas.webp" alt="Hojas decorativas" class="w-full h-auto object-contain opacity-50" />
+      </div>
+
+      <!-- 🌸 SEPARADOR SUPERIOR -->
+      <div class="flex justify-center mb-8" id="separador-reserva-top">
+        <img
+          src="/imagenes/Separadores.webp"
+          alt="Separador decorativo"
+          class="w-36 md:w-44 lg:w-52 h-auto object-contain opacity-90"
+        />
+      </div>
+
+      <!-- CARD PRINCIPAL DE RESERVA -->
+      <div class="bg-white/95 backdrop-blur-sm rounded-3xl border-2 border-[#C9A961]/40 py-4 md:py-12 lg:py-16 px-6 md:px-12 lg:px-16 shadow-lg relative z-10" id="card-reserva">
+        
+        <!-- ÍCONO SUPERIOR -->
+        <div class="flex justify-center mb-6" id="icono-reserva">
+          <div class="w-10 h-10 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-[#C9A961] via-[#d4af37] to-[#C9A961] flex items-center justify-center shadow-xl">
+            <svg class="w-10 h-10 md:w-12 md:h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+        </div>
+
+        <!-- TEXTO PRINCIPAL -->
+        <div class="text-center mb-6" id="texto-reserva">
+          <h2 class="font-charm text-xl md:text-3xl lg:text-4xl text-[#626a54] font-bold leading-tight mb-4">
+            TENEMOS RESERVADO
+          </h2>
+          <h3 class="font-charm text-xl md:text-2xl lg:text-3xl text-[#626a54] font-bold leading-tight">
+            PARA TI
+          </h3>
+        </div>
+
+        <!-- NÚMERO DE LUGARES -->
+        <div class="flex items-center justify-center gap-4 mb-6" id="numero-lugares">
+          <!-- Línea decorativa izquierda -->
+          <div class="w-10 md:w-16 lg:w-20 h-[2px] bg-gradient-to-r from-transparent via-[#C9A961] to-[#C9A961]"></div>
+          
+          <!-- Número destacado -->
+          <div class="flex items-center gap-3">
+            <span class="font-charm text-3xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-br from-[#C9A961] via-[#d4af37] to-[#C9A961] bg-clip-text text-transparent drop-shadow-lg">
+              {lugares}
+            </span>
+          </div>
+          
+          <!-- Línea decorativa derecha -->
+          <div class="w-12 md:w-16 lg:w-20 h-[2px] bg-gradient-to-l from-transparent via-[#C9A961] to-[#C9A961]"></div>
+        </div>
+
+        <!-- TEXTO "LUGAR/LUGARES" -->
+        <div class="text-center mb-4" id="texto-lugares">
+          <p class="font-charm text-2xl md:text-4xl lg:text-5xl text-[#C9A961] font-bold tracking-wide">
+            {textoLugares}
+          </p>
+        </div>
+
+       
+
+      </div>
+
+   
+
+      <!-- 🍃 HOJAS DECORATIVAS INFERIORES IZQUIERDA -->
+      <div class="absolute -left-6 md:-left-12 lg:-left-16 -bottom-8 md:-bottom-12 w-24 md:w-32 lg:w-40 pointer-events-none z-0" id="hoja-reserva-bottom-izq">
+        <img src="/imagenes/Hojas.webp" alt="Hojas decorativas" class="w-full h-auto object-contain transform -scale-x-100 opacity-50" />
+      </div>
+
+      <!-- 🍃 HOJAS DECORATIVAS INFERIORES DERECHA -->
+      <div class="absolute -right-6 md:-right-12 lg:-right-16 -bottom-8 md:-bottom-12 w-24 md:w-32 lg:w-40 pointer-events-none z-0" id="hoja-reserva-bottom-der">
+        <img src="/imagenes/Hojas.webp" alt="Hojas decorativas" class="w-full h-auto object-contain opacity-50" />
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (typeof window !== 'undefined') {
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("🎫 Iniciando animación de Reservas...");
+
+      // 🎯 ESTADO INICIAL
+      gsap.set("#hoja-reserva-top-izq", { opacity: 0, x: -60, y: -40 });
+      gsap.set("#hoja-reserva-top-der", { opacity: 0, x: 60, y: -40 });
+      gsap.set("#hoja-reserva-bottom-izq", { opacity: 0, x: -60, y: 40 });
+      gsap.set("#hoja-reserva-bottom-der", { opacity: 0, x: 60, y: 40 });
+      gsap.set("#separador-reserva-top", { opacity: 0, y: -30, scale: 0.8 });
+      gsap.set("#card-reserva", { opacity: 0, scale: 0.85, y: 40 });
+      gsap.set("#icono-reserva", { opacity: 0, scale: 0, rotation: -180 });
+      gsap.set("#texto-reserva", { opacity: 0, y: 30 });
+      gsap.set("#numero-lugares", { opacity: 0, scale: 0.5 });
+      gsap.set("#texto-lugares", { opacity: 0, y: -20 });
+      gsap.set("#corazones-reserva", { opacity: 0, scale: 0 });
+      gsap.set("#separador-reserva-bottom", { opacity: 0, y: 30, scale: 0.8 });
+
+      // ✨ ANIMACIÓN CON SCROLLTRIGGER
+      ScrollTrigger.create({
+        trigger: "#card-reserva",
+        start: "top 85%",
+        end: "top 20%",
+        onEnter: () => {
+          const tl = gsap.timeline();
+
+          // Separador superior
+          tl.to("#separador-reserva-top", {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            ease: "back.out(1.5)",
+          })
+          // Card principal con efecto dramático
+          .to("#card-reserva", {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "back.out(1.3)",
+          }, "-=0.6")
+          // Ícono girando
+          .to("#icono-reserva", {
+            opacity: 1,
+            scale: 1,
+            rotation: 0,
+            duration: 1,
+            ease: "elastic.out(1, 0.6)",
+          }, "-=0.8")
+          // Texto principal
+          .to("#texto-reserva", {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+          }, "-=0.6")
+          // Número de lugares con explosión
+          .to("#numero-lugares", {
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: "back.out(2)",
+          }, "-=0.4")
+          // Texto LUGAR/LUGARES
+          .to("#texto-lugares", {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+          }, "-=0.6")
+          // Corazones decorativos
+          .to("#corazones-reserva", {
+            opacity: 1,
+            scale: 1,
+            duration: 0.6,
+            ease: "back.out(1.5)",
+          }, "-=0.4")
+          // Hojas en las esquinas (todas al mismo tiempo)
+          .to("#hoja-reserva-top-izq, #hoja-reserva-top-der, #hoja-reserva-bottom-izq, #hoja-reserva-bottom-der", {
+            opacity: 0.5,
+            x: 0,
+            y: 0,
+            duration: 1.2,
+            ease: "power3.out",
+          }, "-=0.8")
+          // Separador inferior
+          .to("#separador-reserva-bottom", {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            ease: "back.out(1.5)",
+          }, "-=0.6");
+
+          // 💫 ANIMACIONES CONTINUAS
+
+          // Pulso en el ícono
+          gsap.to("#icono-reserva > div", {
+            scale: 1.08,
+            duration: 2,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            delay: 1,
+          });
+
+          // Brillo en el número
+          gsap.to("#numero-lugares span", {
+            textShadow: "0 0 30px rgba(201, 169, 97, 0.8), 0 0 60px rgba(201, 169, 97, 0.4)",
+            duration: 2.5,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            delay: 1.2,
+          });
+
+          // Corazones latiendo
+          gsap.to("#corazones-reserva svg", {
+            scale: 1.15,
+            opacity: 1,
+            duration: 1.5,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            stagger: 0.2,
+            delay: 1.5,
+          });
+
+          // Hojas superiores
+          gsap.to("#hoja-reserva-top-izq", {
+            y: -10,
+            rotation: -5,
+            duration: 3.5,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            delay: 1,
+          });
+
+          gsap.to("#hoja-reserva-top-der", {
+            y: -10,
+            rotation: 5,
+            duration: 3.5,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            delay: 1.3,
+          });
+
+          // Hojas inferiores
+          gsap.to("#hoja-reserva-bottom-izq", {
+            y: 10,
+            rotation: 5,
+            duration: 3.5,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            delay: 1.6,
+          });
+
+          gsap.to("#hoja-reserva-bottom-der", {
+            y: 10,
+            rotation: -5,
+            duration: 3.5,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            delay: 1.9,
+          });
+        },
+        onLeaveBack: () => {
+          gsap.set("#hoja-reserva-top-izq", { opacity: 0, x: -60, y: -40 });
+          gsap.set("#hoja-reserva-top-der", { opacity: 0, x: 60, y: -40 });
+          gsap.set("#hoja-reserva-bottom-izq", { opacity: 0, x: -60, y: 40 });
+          gsap.set("#hoja-reserva-bottom-der", { opacity: 0, x: 60, y: 40 });
+          gsap.set("#separador-reserva-top", { opacity: 0, y: -30, scale: 0.8 });
+          gsap.set("#card-reserva", { opacity: 0, scale: 0.85, y: 40 });
+          gsap.set("#icono-reserva", { opacity: 0, scale: 0, rotation: -180 });
+          gsap.set("#texto-reserva", { opacity: 0, y: 30 });
+          gsap.set("#numero-lugares", { opacity: 0, scale: 0.5 });
+          gsap.set("#texto-lugares", { opacity: 0, y: -20 });
+          gsap.set("#corazones-reserva", { opacity: 0, scale: 0 });
+          gsap.set("#separador-reserva-bottom", { opacity: 0, y: 30, scale: 0.8 });
+        },
+      });
+
+      console.log("🎫✨ ¡Componente de Reservas activado!");
+    });
+  }
+</script>
+
+<style>
+  /* Card con efecto hover elegante */
+  #card-reserva {
+    transition: all 0.4s ease;
+  }
+
+  #card-reserva:hover {
+    box-shadow: 0 30px 70px rgba(201, 169, 97, 0.3);
+    transform: translateY(-8px);
+  }
+
+  /* Ícono con transición */
+  #icono-reserva > div {
+    transition: all 0.4s ease;
+  }
+
+  #icono-reserva:hover > div {
+    transform: scale(1.12) rotate(5deg);
+    box-shadow: 0 12px 35px rgba(201, 169, 97, 0.5);
+  }
+
+  /* Número con gradiente brillante */
+  #numero-lugares span {
+    background: linear-gradient(135deg, #C9A961 0%, #d4af37 50%, #C9A961 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 4px 8px rgba(201, 169, 97, 0.3));
+  }
+
+  /* Texto con transición suave */
+  #texto-reserva h2,
+  #texto-reserva h3,
+  #texto-lugares p {
+    transition: all 0.3s ease;
+  }
+
+  /* Corazones con transición */
+  #corazones-reserva svg {
+    transition: all 0.3s ease;
+  }
+
+  #corazones-reserva:hover svg {
+    transform: scale(1.2);
+  }
+
+  /* Hojas con animación */
+  #hoja-reserva-top-izq,
+  #hoja-reserva-top-der,
+  #hoja-reserva-bottom-izq,
+  #hoja-reserva-bottom-der {
+    will-change: transform;
+  }
+
+  /* Separadores con hover */
+  #separador-reserva-top img,
+  #separador-reserva-bottom img {
+    transition: all 0.3s ease;
+  }
+
+  #separador-reserva-top:hover img,
+  #separador-reserva-bottom:hover img {
+    transform: scale(1.08);
+    filter: brightness(1.15);
+  }
+</style>
