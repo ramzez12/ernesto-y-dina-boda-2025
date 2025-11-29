@@ -114,21 +114,17 @@
           </div>
           
           <!-- ⭐ SÁBADO 20 - DÍA ESPECIAL ⭐ -->
-          <div class="aspect-square flex items-center justify-center rounded-lg bg-gradient-to-br from-[#C9A961] to-[#e8c878] shadow-xl dia-calendario dia-especial" id="dia-20">
+          <div class="aspect-square flex items-center justify-center rounded-lg bg-gradient-to-br from-[#C9A961] to-[#e8c878] shadow-xl dia-calendario" id="dia-especial">
             <span class="font-charm text-2xl md:text-3xl text-white font-bold">20</span>
           </div>
 
           <!-- Semana 4: del 21 al 27 -->
-          <!-- ⭐ DOMINGO 21 - DÍA ESPECIAL ⭐ -->
-          <div class="aspect-square flex items-center justify-center rounded-lg bg-gradient-to-br from-[#C9A961] to-[#e8c878] shadow-xl dia-calendario dia-especial" id="dia-21">
-            <span class="font-charm text-2xl md:text-3xl text-white font-bold">21</span>
+          <div class="aspect-square flex items-center justify-center rounded-lg hover:bg-[#C9A961]/10 transition-all dia-calendario">
+            <span class="font-charm text-base md:text-lg text-gray-600">21</span>
           </div>
-          
-          <!-- ⭐ LUNES 22 - DÍA ESPECIAL ⭐ -->
-          <div class="aspect-square flex items-center justify-center rounded-lg bg-gradient-to-br from-[#C9A961] to-[#e8c878] shadow-xl dia-calendario dia-especial" id="dia-22">
-            <span class="font-charm text-2xl md:text-3xl text-white font-bold">22</span>
+          <div class="aspect-square flex items-center justify-center rounded-lg hover:bg-[#C9A961]/10 transition-all dia-calendario">
+            <span class="font-charm text-base md:text-lg text-gray-600">22</span>
           </div>
-          
           <div class="aspect-square flex items-center justify-center rounded-lg hover:bg-[#C9A961]/10 transition-all dia-calendario">
             <span class="font-charm text-base md:text-lg text-gray-600">23</span>
           </div>
@@ -258,14 +254,12 @@
         delay: 1.2,
       });
 
-      // Animación para los 3 días especiales
-      gsap.to(".dia-especial", {
+      gsap.to("#dia-especial", {
         scale: 1.05,
         duration: 2.5,
         ease: "sine.inOut",
         yoyo: true,
         repeat: -1,
-        stagger: 0.3, // Cada día pulsa ligeramente diferente
         delay: 1.5,
       });
 
@@ -275,12 +269,12 @@
 </script>
 
 <style>
-  .dia-especial {
+  #dia-especial {
     box-shadow: 0 6px 20px rgba(201, 169, 97, 0.6);
     position: relative;
   }
 
-  .dia-especial::after {
+  #dia-especial::after {
     content: '';
     position: absolute;
     inset: -3px;
